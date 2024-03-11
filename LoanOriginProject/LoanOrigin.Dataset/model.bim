@@ -87,6 +87,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -95,14 +99,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "3b178ba6-33d5-4212-8547-19597af65ca8",
             "sourceColumn": "id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "address_state",
@@ -407,13 +411,10 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
               }
             ],
             "dataType": "double",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
             "lineageTag": "386f0fad-ccf2-4c31-9f42-7f7f06e0c9e5",
             "sourceColumn": "installment",
             "summarizeBy": "sum"
@@ -424,29 +425,30 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
               }
             ],
             "dataType": "double",
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "d33de697-a524-4efc-852e-6f4d240f6890",
             "sourceColumn": "int_rate",
             "summarizeBy": "sum"
           },
           {
-            "name": "loan_amount",
+            "name": "funded_amount",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
               }
             ],
             "dataType": "int64",
-            "formatString": "0",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
             "lineageTag": "a73191f9-cf5f-41c2-ad9e-cae13b34eb3c",
-            "sourceColumn": "loan_amount",
+            "sourceColumn": "funded_amount",
             "summarizeBy": "sum"
           },
           {
@@ -464,7 +466,7 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "total_payment",
+            "name": "amount_collection",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -472,9 +474,9 @@
               }
             ],
             "dataType": "int64",
-            "formatString": "0",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
             "lineageTag": "27a37afb-d75d-42d2-8ba7-dbe7fbec2699",
-            "sourceColumn": "total_payment",
+            "sourceColumn": "amount_collection",
             "summarizeBy": "sum"
           },
           {
@@ -540,8 +542,8 @@
                 "let",
                 "    Source = Csv.Document(File.Contents(\"D:\\Projects\\Banking Projects\\FinanceDomainProj\\LoanOriginProject\\Data\\financial_loan.csv\"),[Delimiter=\",\", Columns=24, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Promoted Headers\",{{\"emp_length\", \"emp_duration\"}}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", Int64.Type}, {\"address_state\", type text}, {\"application_type\", type text}, {\"emp_duration\", type text}, {\"emp_title\", type text}, {\"grade\", type text}, {\"home_ownership\", type text}, {\"issue_date\", type date}, {\"last_credit_pull_date\", type date}, {\"last_payment_date\", type date}, {\"loan_status\", type text}, {\"next_payment_date\", type date}, {\"member_id\", Int64.Type}, {\"purpose\", type text}, {\"sub_grade\", type text}, {\"term\", type text}, {\"verification_status\", type text}, {\"annual_income\", Int64.Type}, {\"dti\", type number}, {\"installment\", type number}, {\"int_rate\", type number}, {\"loan_amount\", Int64.Type}, {\"total_acc\", Int64.Type}, {\"total_payment\", Int64.Type}})",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Promoted Headers\",{{\"emp_length\", \"emp_duration\"},{\"loan_amount\", \"funded_amount\"},{\"total_payment\", \"amount_collection\"}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", Int64.Type}, {\"address_state\", type text}, {\"application_type\", type text}, {\"emp_duration\", type text}, {\"emp_title\", type text}, {\"grade\", type text}, {\"home_ownership\", type text}, {\"issue_date\", type date}, {\"last_credit_pull_date\", type date}, {\"last_payment_date\", type date}, {\"loan_status\", type text}, {\"next_payment_date\", type date}, {\"member_id\", Int64.Type}, {\"purpose\", type text}, {\"sub_grade\", type text}, {\"term\", type text}, {\"verification_status\", type text}, {\"annual_income\", Int64.Type}, {\"dti\", type number}, {\"installment\", type number}, {\"int_rate\", type number}, {\"funded_amount\", Int64.Type}, {\"total_acc\", Int64.Type}, {\"amount_collection\", Int64.Type}})",
                 "in",
                 "    #\"Changed Type\""
               ],
@@ -1402,7 +1404,7 @@
                 "value": "{\"currencyCulture\":\"en-US\"}"
               }
             ],
-            "expression": "SUM(financial_loan[loan_amount])",
+            "expression": "SUM(financial_loan[funded_amount])",
             "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "0dc8cd25-92e2-4f99-b84b-d6cb9f6a0316"
           },
@@ -1456,7 +1458,7 @@
                 "value": "{\"currencyCulture\":\"en-US\"}"
               }
             ],
-            "expression": "SUM(financial_loan[total_payment])",
+            "expression": "SUM(financial_loan[amount_collection])",
             "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "49ba2021-5b7c-4526-b3ea-fe709b02ba32"
           },
@@ -1711,6 +1713,38 @@
                 "relationship": "1bea300e-f989-4bfc-8141-29e6c7804b76"
               }
             ]
+          },
+          {
+            "name": "MonthName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT('Calendar'[Date],\"mmm\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "23e8e733-aed4-4dc0-b3c2-73af9bb6f9a0",
+            "sortByColumn": "MonthNum",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "MONTH('Calendar'[Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "3a7741c6-4e6b-40a0-93c0-737028450e79",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "ff1a6def-da3d-4ff2-b841-984ad51e0897",
@@ -1930,6 +1964,104 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "Select Measure",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "3ebe0d93fe024ff38952ab4d0072ded2"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Select Measure",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": false,
+            "lineageTag": "a174e8dd-5f71-405b-9238-ae5ec54c2945",
+            "relatedColumnDetails": {
+              "groupByColumns": [
+                {
+                  "groupingColumn": "New Measure Fields"
+                }
+              ]
+            },
+            "sortByColumn": "New Measure Order",
+            "sourceColumn": "[Value1]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "New Measure Fields",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "extendedProperties": [
+              {
+                "name": "ParameterMetadata",
+                "type": "json",
+                "value": {
+                  "kind": 2,
+                  "version": 3
+                }
+              }
+            ],
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "dbfffa39-a735-42da-ac9b-0fd34ca213f4",
+            "sortByColumn": "New Measure Order",
+            "sourceColumn": "[Value2]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "New Measure Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "f220df93-d2de-4ae8-84ae-9254227adf85",
+            "sourceColumn": "[Value3]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "76b2cbfc-4442-40ee-ba10-e4037946068e",
+        "partitions": [
+          {
+            "name": "Select Measure",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "{",
+                "    (\"Total Applications\", NAMEOF('All_measures'[Total Applications]), 0),",
+                "    (\"Total Funded Amount\", NAMEOF('All_measures'[Total Funded Amount]), 1),",
+                "    (\"Total Amount Received\", NAMEOF('All_measures'[Total Amount Received]), 2)",
+                "}"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }
