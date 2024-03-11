@@ -1,1 +1,1 @@
-# CreditCardSpendAnalysis
+# Finance Domain Projects
