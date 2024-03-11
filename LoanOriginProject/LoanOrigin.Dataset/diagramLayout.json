@@ -11,45 +11,71 @@
         {
           "location": {
             "x": 0,
-            "y": 0
+            "y": 209
           },
           "nodeIndex": "financial_loan",
           "nodeLineageTag": "e25d3941-2948-4a44-82b7-54b6d1cb5711",
           "size": {
-            "height": 300,
+            "height": 373,
             "width": 234
           },
           "zIndex": 0
         },
         {
           "location": {
-            "x": 284,
-            "y": 98
+            "x": 283,
+            "y": 0
           },
           "nodeIndex": "All_measures",
           "nodeLineageTag": "37586e0a-920b-434d-81cb-fd606d2946a6",
           "size": {
-            "height": 104,
+            "height": 528,
             "width": 234
           },
           "zIndex": 0
         },
         {
           "location": {
-            "x": 568,
-            "y": 98
+            "x": 535,
+            "y": 0
           },
           "nodeIndex": "All_glpa_vs_blpa",
           "nodeLineageTag": "c4015465-0af3-4ea5-ace4-e4e0916e399c",
           "size": {
-            "height": 104,
+            "height": 501,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 786.19999694824219,
+            "y": 0
+          },
+          "nodeIndex": "New_parallel_formulas",
+          "nodeLineageTag": "f48dde7f-51f7-42e7-8450-1088773dbfc5",
+          "size": {
+            "height": 500,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "ff1a6def-da3d-4ff2-b841-984ad51e0897",
+          "size": {
+            "height": 135,
             "width": 234
           },
           "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 79.815416376326539,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

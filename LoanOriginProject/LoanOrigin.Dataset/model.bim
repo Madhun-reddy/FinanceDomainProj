@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"financial_loan\",\"All_measures\",\"All_glpa_vs_blpa\"]"
+        "value": "[\"financial_loan\",\"All_measures\",\"All_glpa_vs_blpa\",\"New_parallel_formulas\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -40,14 +40,6 @@
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
     "relationships": [
       {
-        "name": "2a279737-657c-4b71-a3f2-27b06d750046",
-        "fromColumn": "issue_date",
-        "fromTable": "financial_loan",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_4b9fded5-5932-4c5a-bc95-4a43f0f7a79e"
-      },
-      {
         "name": "cefc3094-9ae6-4f62-9999-904bd4264623",
         "fromColumn": "last_credit_pull_date",
         "fromTable": "financial_loan",
@@ -70,6 +62,21 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_add8cf1f-aaa1-4334-a907-940fabe91ef5"
+      },
+      {
+        "name": "1bea300e-f989-4bfc-8141-29e6c7804b76",
+        "fromColumn": "Date",
+        "fromTable": "Calendar",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_7ba0573e-6da4-420d-be12-50110062e739"
+      },
+      {
+        "name": "3f1c9377-51d2-4425-b0e4-4326a8918644",
+        "fromColumn": "issue_date",
+        "fromTable": "financial_loan",
+        "toColumn": "Date",
+        "toTable": "Calendar"
       }
     ],
     "sourceQueryCulture": "en-IN",
@@ -191,18 +198,7 @@
             "formatString": "Long Date",
             "lineageTag": "a0e7581a-fd10-4929-ac90-8b476d17c920",
             "sourceColumn": "issue_date",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_4b9fded5-5932-4c5a-bc95-4a43f0f7a79e"
-                },
-                "isDefault": true,
-                "relationship": "2a279737-657c-4b71-a3f2-27b06d750046"
-              }
-            ]
+            "summarizeBy": "none"
           },
           {
             "name": "last_credit_pull_date",
@@ -268,6 +264,10 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "__PBI_SemanticLinks",
+                "value": "[{\"LinkTarget\":{\"TableName\":\"financial_loan\",\"TableItemName\":\"Good vs Bad\",\"ObjectType\":4},\"LinkType\":\"UsedInGroup\"}]"
               }
             ],
             "dataType": "string",
@@ -476,6 +476,58 @@
             "lineageTag": "27a37afb-d75d-42d2-8ba7-dbe7fbec2699",
             "sourceColumn": "total_payment",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "Good vs Bad",
+            "annotations": [
+              {
+                "name": "GroupingDesignState",
+                "value": "{\"Version\":0,\"Sources\":[{\"Name\":\"f\",\"Entity\":\"financial_loan\"}],\"GroupedColumns\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"loan_status\"}}],\"GroupItems\":[{\"DisplayName\":\"(Blank)\",\"BlankDefaultPlaceholder\":true},{\"DisplayName\":\"Bad Loan\",\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"loan_status\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Charged Off'\"}}]]}}},{\"DisplayName\":\"Good Loan\",\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"loan_status\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Current'\"}}],[{\"Literal\":{\"Value\":\"'Fully Paid'\"}}]]}}}]}"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "SWITCH(",
+              "\tTRUE,",
+              "\tISBLANK('financial_loan'[loan_status]),",
+              "\t\"(Blank)\",",
+              "\t'financial_loan'[loan_status] IN {\"Charged Off\"},",
+              "\t\"Bad Loan\",",
+              "\t'financial_loan'[loan_status] IN {\"Current\",",
+              "\t\t\"Fully Paid\"},",
+              "\t\"Good Loan\",",
+              "\t'financial_loan'[loan_status]",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "GroupingMetadata",
+                "type": "json",
+                "value": {
+                  "groupedColumns": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "financial_loan"
+                          }
+                        },
+                        "Property": "loan_status"
+                      }
+                    }
+                  ],
+                  "version": 0
+                }
+              }
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "6974a4b5-6bd9-4267-873a-8006ab5b5eee",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "e25d3941-2948-4a44-82b7-54b6d1cb5711",
@@ -707,212 +759,6 @@
             }
           }
         ]
-      },
-      {
-        "name": "LocalDateTable_4b9fded5-5932-4c5a-bc95-4a43f0f7a79e",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "b1ff6190-669f-455d-829b-4d805152bf10",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Year",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "e3a11014-ea1e-4410-9af9-78609b64d255",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "0ccffe5e-2978-41dd-b4a4-e2b3bec58dc7",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Month",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "10395732-3854-48aa-9cdc-f1f04a78e592",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "219b352c-6057-4f44-9f89-c5e92c2219e1",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Quarter",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Qtr \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "d296e61c-9674-45df-8a90-b41bb4cea29b",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Day",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "9d5e0b25-264e-4c3b-98df-a6f43585043c",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Date Hierarchy",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Year",
-                "column": "Year",
-                "lineageTag": "b7d63a0b-b12e-4cf8-be69-03b79c6e99bf",
-                "ordinal": 0
-              },
-              {
-                "name": "Quarter",
-                "column": "Quarter",
-                "lineageTag": "54140ff4-cd96-42f7-96be-39ffe7a64067",
-                "ordinal": 1
-              },
-              {
-                "name": "Month",
-                "column": "Month",
-                "lineageTag": "a75cb83e-d3d6-4827-a597-931673e10541",
-                "ordinal": 2
-              },
-              {
-                "name": "Day",
-                "column": "Day",
-                "lineageTag": "7d06e055-11c9-473c-bdc7-cae326f2adbe",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "871b90f6-9848-408a-86f9-67cbf387fb5b"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "e0228acd-99ff-4e5d-82d3-73ec9f31174d",
-        "partitions": [
-          {
-            "name": "LocalDateTable_4b9fded5-5932-4c5a-bc95-4a43f0f7a79e",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('financial_loan'[issue_date])), 1, 1), Date(Year(MAX('financial_loan'[issue_date])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
       },
       {
         "name": "LocalDateTable_028b9659-6d0e-4e4f-a62d-f410796fcf2c",
@@ -1544,37 +1390,49 @@
         "measures": [
           {
             "name": "MTD Total Applications",
-            "expression": "CALCULATE(COUNTROWS(financial_loan), DATESMTD(financial_loan[issue_date]))",
-            "formatString": "#,0",
+            "expression": "CALCULATE(COUNTROWS(financial_loan), DATESMTD('Calendar'[Date]))",
+            "formatString": "#,0.0",
             "lineageTag": "2aa73b24-403d-4516-8f5b-e26f8f3c8fd5"
           },
           {
             "name": "Total Funded Amount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
             "expression": "SUM(financial_loan[loan_amount])",
-            "formatString": "#,0",
+            "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "0dc8cd25-92e2-4f99-b84b-d6cb9f6a0316"
           },
           {
             "name": "Total Applications",
             "expression": "COUNTROWS(financial_loan)",
-            "formatString": "#,0",
+            "formatString": "#,0.0",
             "lineageTag": "716caa16-8f7f-482d-892c-cf49691ba347"
           },
           {
             "name": "MTD Funded Amount",
-            "expression": "CALCULATE([Total Funded Amount], DATESMTD(financial_loan[issue_date]))",
-            "formatString": "#,0",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "expression": "CALCULATE([Total Funded Amount], DATESMTD('Calendar'[Date]))",
+            "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "7c7df305-0df3-49a1-a667-8bd3285fef61"
           },
           {
             "name": "PMTD Funded Amount",
-            "expression": "CALCULATE([Total Funded Amount], PARALLELPERIOD(DATESMTD(financial_loan[issue_date]),-1,MONTH))",
-            "formatString": "#,0",
+            "expression": "CALCULATE([Total Funded Amount], PARALLELPERIOD(DATESMTD('Calendar'[Date]),-1,MONTH))",
+            "formatString": "0",
             "lineageTag": "d1d8309e-a03a-44be-b7b2-cf3bed9dec21"
           },
           {
             "name": "PMTD Total Applications",
-            "expression": "CALCULATE([Total Applications], PARALLELPERIOD(DATESMTD(financial_loan[issue_date]),-1,MONTH))",
+            "expression": "CALCULATE([Total Applications], PARALLELPERIOD(DATESMTD('Calendar'[Date]),-1,MONTH))",
             "formatString": "#,0",
             "lineageTag": "8fb484a6-edd0-4260-b740-6a5b27ee8d5a"
           },
@@ -1592,19 +1450,31 @@
           },
           {
             "name": "Total Amount Received",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
             "expression": "SUM(financial_loan[total_payment])",
-            "formatString": "#,0",
+            "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "49ba2021-5b7c-4526-b3ea-fe709b02ba32"
           },
           {
             "name": "MTD Amount Received",
-            "expression": "CALCULATE([Total Amount Received], DATESMTD(financial_loan[issue_date]))",
-            "formatString": "#,0",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "expression": "CALCULATE([Total Amount Received], DATESMTD('Calendar'[Date]))",
+            "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "50bc5e7f-033d-4909-ad56-27994767a6d0"
           },
           {
             "name": "PMTD Amount Received",
-            "expression": "CALCULATE([Total Amount Received], PARALLELPERIOD(DATESMTD(financial_loan[issue_date]),-1,MONTH))",
+            "expression": "CALCULATE([Total Amount Received], PARALLELPERIOD(DATESMTD('Calendar'[Date]),-1,MONTH))",
             "formatString": "#,0",
             "lineageTag": "789fbf92-52db-41d3-9dd5-28c6b93dcbe3"
           },
@@ -1617,18 +1487,18 @@
           {
             "name": "Avg Interest Rate",
             "expression": "AVERAGE(financial_loan[int_rate])",
-            "formatString": "0.00%;-0.00%;0.00%",
+            "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "bba058bf-006d-48f2-bedb-9742ce4dbaea"
           },
           {
             "name": "MTD Avg Interest Rate",
-            "expression": "CALCULATE([Avg Interest Rate], DATESMTD(financial_loan[issue_date]))",
+            "expression": "CALCULATE([Avg Interest Rate], DATESMTD('Calendar'[Date]))",
             "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "dabf8a9a-10b9-4ef0-bf2c-568f3bc3469f"
           },
           {
             "name": "PMTD Avg Interest Rate",
-            "expression": "CALCULATE([Avg Interest Rate], PARALLELPERIOD(DATESMTD(financial_loan[issue_date]),-1,MONTH))",
+            "expression": "CALCULATE([Avg Interest Rate], PARALLELPERIOD(DATESMTD('Calendar'[Date]),-1,MONTH))",
             "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "dc6670e0-0508-4117-b7e0-6d6d2fb9d2bd"
           },
@@ -1641,18 +1511,18 @@
           {
             "name": "Avg DTI",
             "expression": "AVERAGE(financial_loan[dti])",
-            "formatString": "0.00%;-0.00%;0.00%",
+            "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "5ed49ec6-3fad-4ebe-8f10-93fba54fa221"
           },
           {
             "name": "MTD avg DTI",
-            "expression": "CALCULATE([Avg DTI], DATESMTD(financial_loan[issue_date]))",
+            "expression": "CALCULATE([Avg DTI], DATESMTD('Calendar'[Date]))",
             "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "857ab23c-88e7-41d9-b51f-cb1210d37282"
           },
           {
             "name": "PMTD avg DTI",
-            "expression": "CALCULATE([Avg DTI], PARALLELPERIOD(DATESMTD(financial_loan[issue_date]),-1,MONTH))",
+            "expression": "CALCULATE([Avg DTI], PARALLELPERIOD(DATESMTD('Calendar'[Date]),-1,MONTH))",
             "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "2902cd05-bc1a-428c-adbc-8d07a5b599fe"
           },
@@ -1712,7 +1582,7 @@
           {
             "name": "Good Loan Percentage",
             "expression": "DIVIDE([Good Loan Applications],[Total Applications])",
-            "formatString": "0.00%;-0.00%;0.00%",
+            "formatString": "0.0%;-0.0%;0.0%",
             "lineageTag": "877a734f-b87c-4f29-ae2b-b339be0fcf70"
           },
           {
@@ -1757,6 +1627,309 @@
             }
           }
         ]
+      },
+      {
+        "name": "New_parallel_formulas",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "f48dde7f-51f7-42e7-8450-1088773dbfc5",
+        "measures": [
+          {
+            "name": "PMTD Total Applications2",
+            "expression": "CALCULATE([Total Applications], DATESMTD(DATEADD('Calendar'[Date],-1,MONTH)))",
+            "formatString": "#,0",
+            "lineageTag": "1b72b7ce-d672-44e8-b71f-974040d67ea8"
+          },
+          {
+            "name": "MoM Applications2",
+            "expression": "([MTD Total Applications] - [PMTD Total Applications])/[PMTD Total Applications]",
+            "formatString": "0.0%;-0.0%;0.0%",
+            "lineageTag": "61153c49-028b-4ed4-8317-fa8dfd128edc"
+          },
+          {
+            "name": "MTD Total Applications2",
+            "expression": "CALCULATE(TOTALMTD([Total Applications], 'Calendar'[Date]))",
+            "formatString": "#,0",
+            "lineageTag": "eb3e6152-1631-4154-aad9-d7a15aed274c"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "New_parallel_formulas",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Calendar",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "88dd2630d8a64bf68efa4c355d095321"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "833e7a82-4c4f-41ab-b9f0-f9196c1f345e",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_7ba0573e-6da4-420d-be12-50110062e739"
+                },
+                "isDefault": true,
+                "relationship": "1bea300e-f989-4bfc-8141-29e6c7804b76"
+              }
+            ]
+          }
+        ],
+        "lineageTag": "ff1a6def-da3d-4ff2-b841-984ad51e0897",
+        "partitions": [
+          {
+            "name": "Calendar",
+            "mode": "import",
+            "source": {
+              "expression": "CALENDAR(MIN(financial_loan[issue_date]), MAX(financial_loan[issue_date]))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_7ba0573e-6da4-420d-be12-50110062e739",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "5f777f41-abe0-4117-8fe0-ea6415ebe54c",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "b22ed4bf-1552-4574-a84b-d43355b148ed",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "38a2c585-5634-4fe5-b2ae-e9e064397b66",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "2ee11cfd-7986-4ab5-82c3-dec971a3663f",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "e824b509-6918-4d3e-8ab6-8e087c850698",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "86d6b547-415e-482d-9a91-19728b78ba37",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "611cd712-da1a-4af5-9c4a-ab0bb338f386",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "f6689ad2-9eb1-4632-b075-d0cc8591307f",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "7c45a4b1-b7a7-42bb-9d60-7960dae31870",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "5bb3979b-991a-490d-8a9b-60be64568be9",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "dbf018c2-4e7f-4af8-bec4-9157ece9ee4c",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "a7277f04-bbfd-4e42-88a6-708b9999ae07"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "1b8ad49c-a67f-4ee7-be5b-92f2623fee28",
+        "partitions": [
+          {
+            "name": "LocalDateTable_7ba0573e-6da4-420d-be12-50110062e739",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
       }
     ]
   }
