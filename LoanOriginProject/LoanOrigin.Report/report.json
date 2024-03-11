@@ -1,0 +1,122 @@
+{
+  "config": "{\"version\":\"5.51\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.51\",\"type\":2}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU02",
+            "path": "BaseThemes/CY24SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "KPIs",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"cddf6adc56939403d353\",\"layouts\":[{\"id\":0,\"position\":{\"x\":47.99999999999999,\"y\":47.99999999999999,\"z\":1,\"width\":416,\"height\":608,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Values\":[{\"queryRef\":\"All_measures.Total Applications\"},{\"queryRef\":\"All_measures.MTD Total Applications\"},{\"queryRef\":\"All_measures.MoM Applications\"},{\"queryRef\":\"All_measures.Total Funded Amount\"},{\"queryRef\":\"All_measures.MTD Funded Amount\"},{\"queryRef\":\"All_measures.MoM Funded Amount\"},{\"queryRef\":\"All_measures.Total Amount Received\"},{\"queryRef\":\"All_measures.MTD Total Amount Received\"},{\"queryRef\":\"All_measures.MoM Amount Received\"},{\"queryRef\":\"All_measures.Avg Interest Rate\"},{\"queryRef\":\"All_measures.MTD Avg Interest Rate\"},{\"queryRef\":\"All_measures.MoM Avg Interest Rate\"},{\"queryRef\":\"All_measures.Avg DTI\"},{\"queryRef\":\"All_measures.MTD avg DTI\"},{\"queryRef\":\"All_measures.MoM avg DTI\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"All_measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Applications\"},\"Name\":\"All_measures.Total Applications\",\"NativeReferenceName\":\"Total Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Total Applications\"},\"Name\":\"All_measures.MTD Total Applications\",\"NativeReferenceName\":\"MTD Total Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MoM Applications\"},\"Name\":\"All_measures.MoM Applications\",\"NativeReferenceName\":\"MoM Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Funded Amount\"},\"Name\":\"All_measures.Total Funded Amount\",\"NativeReferenceName\":\"Total Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Funded Amount\"},\"Name\":\"All_measures.MTD Funded Amount\",\"NativeReferenceName\":\"MTD Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MoM Funded Amount\"},\"Name\":\"All_measures.MoM Funded Amount\",\"NativeReferenceName\":\"MoM Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Amount Received\"},\"Name\":\"All_measures.Total Amount Received\",\"NativeReferenceName\":\"Total Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Amount Received\"},\"Name\":\"All_measures.MTD Total Amount Received\",\"NativeReferenceName\":\"MTD Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MoM Amount Received\"},\"Name\":\"All_measures.MoM Amount Received\",\"NativeReferenceName\":\"MoM Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Avg Interest Rate\"},\"Name\":\"All_measures.Avg Interest Rate\",\"NativeReferenceName\":\"Avg Interest Rate\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Avg Interest Rate\"},\"Name\":\"All_measures.MTD Avg Interest Rate\",\"NativeReferenceName\":\"MTD Avg Interest Rate\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MoM Avg Interest Rate\"},\"Name\":\"All_measures.MoM Avg Interest Rate\",\"NativeReferenceName\":\"MoM Avg Interest Rate\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Avg DTI\"},\"Name\":\"All_measures.Avg DTI\",\"NativeReferenceName\":\"Avg DTI\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD avg DTI\"},\"Name\":\"All_measures.MTD avg DTI\",\"NativeReferenceName\":\"MTD avg DTI\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MoM avg DTI\"},\"Name\":\"All_measures.MoM avg DTI\",\"NativeReferenceName\":\"MoM avg DTI\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{},\"selector\":{\"metadata\":\"All_measures.Total Applications\"}}],\"values\":[{\"properties\":{\"wordWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"valuesOnRow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'KPIs'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 608.00,
+          "width": 416.00,
+          "x": 48.00,
+          "y": 48.00,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Dashboard",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection30266fee4460f474e141",
+      "ordinal": 3,
+      "visualContainers": [],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "GLPA vs BLPA",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectiona8d46163a286df4cf7bb",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"bbd92ee3efd6a340d7c3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":80,\"z\":0,\"width\":352,\"height\":304,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Values\":[{\"queryRef\":\"All_glpa_vs_blpa.Good Loan Applications\"},{\"queryRef\":\"All_glpa_vs_blpa.Good Loan Funded Amount\"},{\"queryRef\":\"All_glpa_vs_blpa.Good Loan Amount Received\"},{\"queryRef\":\"All_glpa_vs_blpa.Good Loan Percentage\"},{\"queryRef\":\"All_glpa_vs_blpa.Bad Loan Applications\"},{\"queryRef\":\"All_glpa_vs_blpa.Bad Loan Funded Amount\"},{\"queryRef\":\"All_glpa_vs_blpa.Bad Loan Amount Received\"},{\"queryRef\":\"All_glpa_vs_blpa.Bad Loan Percentage\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"All_glpa_vs_blpa\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Good Loan Applications\"},\"Name\":\"All_glpa_vs_blpa.Good Loan Applications\",\"NativeReferenceName\":\"Good Loan Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Good Loan Funded Amount\"},\"Name\":\"All_glpa_vs_blpa.Good Loan Funded Amount\",\"NativeReferenceName\":\"Good Loan Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Good Loan Amount Received\"},\"Name\":\"All_glpa_vs_blpa.Good Loan Amount Received\",\"NativeReferenceName\":\"Good Loan Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Good Loan Percentage\"},\"Name\":\"All_glpa_vs_blpa.Good Loan Percentage\",\"NativeReferenceName\":\"Good Loan Percentage\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Bad Loan Applications\"},\"Name\":\"All_glpa_vs_blpa.Bad Loan Applications\",\"NativeReferenceName\":\"Bad Loan Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Bad Loan Amount Received\"},\"Name\":\"All_glpa_vs_blpa.Bad Loan Amount Received\",\"NativeReferenceName\":\"Bad Loan Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Bad Loan Funded Amount\"},\"Name\":\"All_glpa_vs_blpa.Bad Loan Funded Amount\",\"NativeReferenceName\":\"Bad Loan Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Bad Loan Percentage\"},\"Name\":\"All_glpa_vs_blpa.Bad Loan Percentage\",\"NativeReferenceName\":\"Bad Loan Percentage\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"values\":[{\"properties\":{\"valuesOnRow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"wordWrap\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Good vs Bad Loans'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 304.00,
+          "width": 352.00,
+          "x": 16.00,
+          "y": 80.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Summary",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectionf15258485988f82df5fd",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"306bcc31fc12c5ca6629\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1,\"width\":256,\"height\":400,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"financial_loan.purpose\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"financial_loan\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"purpose\"},\"Name\":\"financial_loan.purpose\",\"NativeReferenceName\":\"purpose\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"purpose\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 400.00,
+          "width": 256.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"40ff98f0fe4a8f98a4f3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":480.00000000000006,\"y\":0,\"z\":3,\"width\":224,\"height\":448,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"financial_loan.address_state\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"financial_loan\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"address_state\"},\"Name\":\"financial_loan.address_state\",\"NativeReferenceName\":\"address_state\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 448.00,
+          "width": 224.00,
+          "x": 480.00,
+          "y": 0.00,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"6f8ea70df2b3014a3da6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":240.00000000000003,\"y\":480.00000000000006,\"z\":0,\"width\":1007.9999999999999,\"height\":240.00000000000003,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"financial_loan.loan_status\",\"active\":true}],\"Values\":[{\"queryRef\":\"All_measures.Total Applications\"},{\"queryRef\":\"All_measures.Total Funded Amount\"},{\"queryRef\":\"All_measures.Total Amount Received\"},{\"queryRef\":\"All_measures.MTD Funded Amount\"},{\"queryRef\":\"All_measures.MTD Amount Received\"},{\"queryRef\":\"All_measures.Avg Interest Rate\"},{\"queryRef\":\"All_measures.Avg DTI\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"financial_loan\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"All_measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"loan_status\"},\"Name\":\"financial_loan.loan_status\",\"NativeReferenceName\":\"loan_status\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Applications\"},\"Name\":\"All_measures.Total Applications\",\"NativeReferenceName\":\"Total Applications\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Funded Amount\"},\"Name\":\"All_measures.Total Funded Amount\",\"NativeReferenceName\":\"Total Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Amount Received\"},\"Name\":\"All_measures.Total Amount Received\",\"NativeReferenceName\":\"Total Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Funded Amount\"},\"Name\":\"All_measures.MTD Funded Amount\",\"NativeReferenceName\":\"MTD Funded Amount\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"MTD Amount Received\"},\"Name\":\"All_measures.MTD Amount Received\",\"NativeReferenceName\":\"MTD Amount Received\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Avg Interest Rate\"},\"Name\":\"All_measures.Avg Interest Rate\",\"NativeReferenceName\":\"Avg Interest Rate\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Avg DTI\"},\"Name\":\"All_measures.Avg DTI\",\"NativeReferenceName\":\"Avg DTI\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"loan_status\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Loan Status'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"16D\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'left'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 240.00,
+          "width": 1008.00,
+          "x": 240.00,
+          "y": 480.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"e8a3585034f9222138c2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":256,\"y\":0,\"z\":2,\"width\":224,\"height\":256,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"financial_loan.grade\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"financial_loan\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"grade\"},\"Name\":\"financial_loan.grade\",\"NativeReferenceName\":\"grade\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"grade\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 256.00,
+          "width": 224.00,
+          "x": 256.00,
+          "y": 0.00,
+          "z": 2.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
